@@ -1,7 +1,11 @@
-/* Print to standard output using printf */
 #include<stdio.h>
 
-/* Entry point */
+/* 
+ * main - Entry point
+ *
+ * Return: 0 (Successful)
+ *
+ */
 int main(void)
 {
 	printf("with proper grammar, but the outcome is a piece of art,");
