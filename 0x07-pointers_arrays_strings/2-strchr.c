@@ -9,7 +9,7 @@
  */
 char *_strchr(char *s, char c)
 {
-	int addr;
+	unsigned int addr;
 
 	while (1)
 	{
