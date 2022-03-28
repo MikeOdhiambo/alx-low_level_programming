@@ -9,16 +9,15 @@
  */
 char *_strchr(char *s, char c)
 {
-	unsigned int addr;
+	unsigned int i;
 
-	while (1)
+	for (i = 0; s[i]; i++)
 	{
-		addr = *s++;
-		if (addr == c)
+		if (s[i] == c)
 		{
-			return (s - 1);
+			return (s + i);
 		}
-		if (addr == 0)
+		else
 		{
 			return (NULL);
 		}
