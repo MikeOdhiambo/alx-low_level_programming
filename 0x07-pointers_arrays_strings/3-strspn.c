@@ -9,14 +9,18 @@
  */
 unsigned int _strspn(char *s, char *accept)
 {
-	int counter = 0;
+	int counter;
 	int i, j;
 
-	for (j = 0; s[i] != 32 && s[i]; i++)
+	for (j = 0; accept[j] != 32 && accept[j]; j++)
 	{
-		if (s[i] == accept[j])
+		counter = 0;
+		for (i = 0; s[i]; i++)
 		{
-			counter += 1;
+			if (s[i] == accept[j])
+			{
+				counter += 1;
+			}
 		}
 	}
 	return (counter);
