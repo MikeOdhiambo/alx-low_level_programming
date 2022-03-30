@@ -7,19 +7,22 @@
  *
  * Return: The square root or -1 if no square root
  */
+
+int root(int i, int j);
+
 int _sqrt_recursion(int n)
 {
-	return (sqrt(0, n));
+	return (root(0, n));
 }
 
 /**
- * sqrt - Approximates the square root recursively
+ * root - Approximates the square root recursively
  * @i: checker value
  * @j: squared value
  *
  * Return: int
  */
-int sqrt(int i, int j)
+int root(int i, int j)
 {
 	if (i > 0)
 	{
@@ -31,6 +34,6 @@ int sqrt(int i, int j)
 	}
 	else
 	{
-		return (sqrt(i + 1, j));
+		return (root(i + 1, j));
 	}
 }
