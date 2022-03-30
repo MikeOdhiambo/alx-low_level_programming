@@ -28,7 +28,7 @@ int root(int i, int j)
 	{
 		return (-1);
 	}
-	else if (i * i = j)
+	else if (i * i == j)
 	{
 		return (i);
 	}
@@ -36,4 +36,5 @@ int root(int i, int j)
 	{
 		return (root(i + 1, j));
 	}
+	return (-1);
 }
