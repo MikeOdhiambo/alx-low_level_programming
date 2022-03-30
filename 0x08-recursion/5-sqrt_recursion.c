@@ -36,5 +36,5 @@ int root(int i, int j)
 	{
 		return (root(i + 1, j));
 	}
-	return (-1);
+	return;
 }
