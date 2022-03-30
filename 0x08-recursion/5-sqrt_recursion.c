@@ -9,6 +9,7 @@
  * Return: The square root or -1 if no square root
  */
 
+int root(int i, int j);
 
 int _sqrt_recursion(int n)
 {
