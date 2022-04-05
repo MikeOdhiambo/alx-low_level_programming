@@ -29,13 +29,16 @@ char *str_concat(char *s1, char *s2)
 	}
 	len3 = len1 + len2;
 	ptr = malloc((len3 + 1) * sizeof(char));
-	for (i = 0; i < len1; i++)
+	if (ptr != NULL)
 	{
-		ptr[i] = s1[i];
-	}
-	for (i = len1; i < len3; i++)
-	{
-		ptr[i] = s2[i - len1];
+		for (i = 0; i < len1; i++)
+		{
+			ptr[i] = s1[i];
+		}
+		for (i = len1; i < len3; i++)
+		{
+			ptr[i] = s2[i - len1];
+		}
 	}
 	ptr[len3] = '\0';
 	return (ptr);
