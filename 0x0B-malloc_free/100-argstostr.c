@@ -57,7 +57,7 @@ char *argstostr(int ac, char **av)
 		}
 		newStr[k++] = '\n';
 	}
-	cat[k] = '\0';
-	return (cat);
+	newStr[k] = '\0';
+	return (newStr);
 }
 
