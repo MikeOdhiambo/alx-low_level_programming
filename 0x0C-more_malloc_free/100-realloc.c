@@ -31,7 +31,6 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	unsigned int i;
 	int buff;
 
-	oldptr = ptr;
 	if (ptr == NULL)
 	{
 		return (malloc(new_size));
@@ -45,6 +44,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	{
 		return (ptr);
 	}
+	oldptr = ptr;
 	buff = min(old_size, new_size);
 	newptr = malloc(new_size);
 	if (newptr == NULL)
