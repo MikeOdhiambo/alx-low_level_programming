@@ -14,7 +14,7 @@ void print_dog(struct dog *d)
 	ptr = d;
 	if (ptr == NULL)
 	{
-		ptr = malloc(sizeof(struct dog));
+		return;
 	}
 	printf("Name: %s\n", ptr->name ? ptr->name : "(nil)");
 	printf("Age: %f\n", ptr->age);
