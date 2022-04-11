@@ -3,9 +3,9 @@
 
 /**
  * struct dog - defines a dog structure
- * @name: First member
- * @age: Second member
- * @owner: Third member
+ * @name: Name of dog
+ * @age: Age as a float
+ * @owner: Name of owner
  */
 struct dog
 {
