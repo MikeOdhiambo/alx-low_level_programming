@@ -6,9 +6,6 @@
  * @name: First member
  * @age: Second member
  * @owner: Third member
- *
- * Description: Defines a dog structure with name,
- * age and owner members
  */
 struct dog
 {
@@ -23,4 +20,4 @@ void print_dog(struct dog *d);
 dog_t *new_dog(char *name, float age, char *owner);
 void free_dog(dog_t *d);
 
-#endif
+#endif /* DOG_H */
