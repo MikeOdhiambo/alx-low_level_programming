@@ -16,7 +16,7 @@ void print_dog(struct dog *d)
 	{
 		ptr = malloc(sizeof(struct dog));
 	}
-	ptr->name ? printf("Name: %s\n", ptr->name) : printf("Name: (nil)\n");
-	ptr->age ? printf("Age: %f\n", ptr->age) : printf("Age: (nil)\n");
-	ptr->owner ? printf("Owner: %s\n", ptr->owner) : printf("Owner: (nil)\n");
+	printf("Name: %s\n", ptr->name ? ptr->name : "(nil)");
+	printf("Age: %f\n", ptr->age);
+	printf("Owner: %s\n", ptr->owner ? ptr->owner : "(nil)");
 }
