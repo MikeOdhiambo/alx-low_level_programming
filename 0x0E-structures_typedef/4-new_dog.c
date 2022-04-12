@@ -1,87 +1,86 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include "dog.h"
+
 /**
- * _strlen - Finds the length of a string
- * @str: Given string
+ * _strlen - returns the length of a string
+ * @s: string to find length of
  *
  * Return: length of string
  */
-int _strlen(char *str)
-{
-	int i;
 
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-	for (i = 0; str[i]; i++)
-	{
-	}
-	return (i);
+int _strlen(char *s)
+{
+	int len = 0;
+
+	while (s[len])
+		len++;
+
+	return (len);
 }
 
 /**
- * _strcpy - Copy a string to another
- * @src: String to copy
- * @dest: Destination for copying
+ * *_strcpy - copies a string to a new buffer
+ * @dest: destination for copy
+ * @src: source
  *
- * Return: void
+ * Return: pointer to dest
  */
-void _strcpy(char *src, char *dest)
-{
-	int i;
 
-	for (i = 0; src[i]; i++)
+char *_strcpy(char *dest, char *src)
+{
+	int len = 0;
+
+	while (src[len])
 	{
-		dest[i] = src[i];
+		dest[len] = src[len];
+		len++;
 	}
-	dest[i] = '\0';
+
+	dest[len] = '\0';
+
 	return (dest);
 }
 
 /**
- * *new_dog - Creates an instance of dog
- * @name: str
- * @age: float
- * @owner: str
+ * new_dog - creates a new dog using type dog_t
+ * @name: dog's name
+ * @age: dog's age
+ * @owner: dog's owner
  *
- * Return: Pointer(Success), NULL (fail)
+ * Return: pointer to new dog
  */
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *nDog;
-	int len1, len2, i;
+	dog_t *poppy;
 
 	if (name == NULL)
-	{
 		return (NULL);
-	}
 	if (owner == NULL)
-	{
 		return (NULL);
-	}
-	nDog = malloc(sizeof(dog_t));
-	if (nDog == NULL)
-	{
-		return (NULL);
-	}
-	nDog->name = malloc(sizeof(char) * _strlen(name) + 1);
-	if (nDog->name == NULL)
-	{
-		free(nDog);
-		return (NULL);
-	}
-	nDog->owner = malloc(sizeof(char) * _strlen(owner) + 1);
-	if (nDog->owner == NULL)
-	{
-		free(nDog->name);
-		free(nDog);
-		return (NULL);
-	}
-	_strcpy(nDog->name, name);
-	nDog->age = age;
-	_strcpy(nDog->owner, owner);
-	return (nDog);
-}
 
+	poppy = malloc(sizeof(struct dog));
+	if (poppy == NULL)
+		return (NULL);
+
+	poppy->name = malloc((_strlen(name) + 1) * sizeof(char));
+	if (poppy->name == NULL)
+	{
+		free(poppy);
+		return (NULL);
+	}
+
+	poppy->owner = malloc((_strlen(owner) + 1) * sizeof(char));
+	if (poppy->owner == NULL)
+	{
+		free(poppy->name);
+		free(poppy);
+		return (NULL);
+	}
+
+	_strcpy(poppy->name, name);
+	poppy->age = age;
+	_strcpy(poppy->owner, owner);
+
+	return (poppy);
+}
