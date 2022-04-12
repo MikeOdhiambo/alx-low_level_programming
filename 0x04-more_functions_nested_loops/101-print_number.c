@@ -1,30 +1,40 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
-* main - print largest prime factor
-*
-* Return: void
-*/
+ * print_number - print exact integer
+ * @n: number to print
+ *
+ * Return: void
+ */
 
-int main(void)
+void print_number(int n)
 {
-	unsigned long i;
-	unsigned long num = 612852475143;
 
+	unsigned int power;
+	int printing = 0;
+	unsigned int nosign;
 
-	while (num % 2 == 0)
-		num = num / 2;
-	for (i = 3; i <= 999999; i = i + 2)
+	if (n == 0)
+		_putchar ('0');
+	else
 	{
-		while (num % i == 0)
+		if (n < 0)
 		{
-			num = num / i;
+			n = n * -1;
+			nosign = n;
+			_putchar ('-');
+		}
+		else
+			nosign = n;
+		for (power = 1000000000; power >= 1; power = power / 10)
+		{
+			if (nosign >= power)
+				printing = 1;
+			if (printing == 1)
+			{
+				_putchar ((nosign / power) + '0');
+				nosign = nosign % power;
+			}
 		}
 	}
-
-	if (num > 2)
-		printf("%lu\n", num);
-	return (0);
 }
