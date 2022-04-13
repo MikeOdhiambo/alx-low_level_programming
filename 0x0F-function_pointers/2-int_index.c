@@ -11,12 +11,12 @@
  */
 int int_index(int *array, int size, int (*cmp)(int))
 {
+	int i;
+
 	if (size > 0)
 	{
 		if (array && cmp)
 		{
-			unsigned int i;
-
 			for (i = 0; i < size; i++)
 			{
 				if (cmp(array[i]))
