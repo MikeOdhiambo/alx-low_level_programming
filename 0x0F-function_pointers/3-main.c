@@ -10,6 +10,7 @@
 int main(int argc, char *argv[])
 {
 	int num1, num2;
+	char *sign;
 	int (*oprnd)(int, int);
 
 	if (argc != 4)
@@ -22,7 +23,8 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(99);
 	}
-	oprnd = get_op_func(argv[2]);
+	sign = argv[2];
+	oprnd = get_op_func(sign);
 	if (oprnd == NULL)
 	{
 		printf("Error\n");
