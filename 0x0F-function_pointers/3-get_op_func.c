@@ -18,7 +18,7 @@ int (*get_op_func(char *s))(int, int)
 		{"/", op_div},
 		{"%", op_mod },
 		{NULL, NULL}
-	}
+	};
 	
 	if (!s || s[1])
 	{

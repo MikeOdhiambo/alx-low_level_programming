@@ -5,7 +5,7 @@
  * main - A simple calculator
  * @argc: argument count
  * @argv: argument pointer array
- * Return: 0 (Always)
+ * Return: 0 (Always), exit (Fail)
  */
 int main(int argc, char *argv[])
 {

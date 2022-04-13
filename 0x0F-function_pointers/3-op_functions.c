@@ -52,7 +52,7 @@ int op_mul(int a, int b)
  * @a: First integer
  * @b: Second integer
  *
- * Return: Quotient
+ * Return: Quotient, 100 (Fail)
  */
 int op_div(int a, int b)
 {
@@ -72,7 +72,7 @@ int op_div(int a, int b)
  * @a: First number
  * @b: Second number
  *
- * Return: Remainder of division
+ * Return: Remainder of division, 100 (Fail)
  */
 int op_mod(int a, int b)
 {
