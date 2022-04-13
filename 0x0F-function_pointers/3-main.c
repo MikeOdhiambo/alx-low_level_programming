@@ -23,6 +23,8 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(99);
 	}
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
 	sign = argv[2];
 	oprnd = get_op_func(sign);
 	if (oprnd == NULL)
@@ -30,8 +32,6 @@ int main(int argc, char *argv[])
 		printf("Error\n");
 		exit(99);
 	}
-	num1 = atoi(argv[1]);
-	num2 = atoi(argv[3]);
 	printf("%d\n", oprnd(num1, num2));
 	return (0);
 }
