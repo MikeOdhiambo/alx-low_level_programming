@@ -83,6 +83,6 @@ int op_mod(int a, int b)
 		printf("Error\n");
 		exit(100);
 	}
-	quot = a % b;
+	rem = a % b;
 	return (rem);
 }
