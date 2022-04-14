@@ -8,7 +8,7 @@
  */
 void print_numbers(const char *separator, const unsigned int n, ...)
 {
-	unsigned int i;
+	unsigned int i, j;
 	va_list nums;
 
 	va_start(nums, n);
@@ -17,11 +17,10 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 		printf("%d", va_arg(nums, int));
 		if (separator)
 		{
-			printf("%s", separator);
-		}
-		else
-		{
-			continue;
+			for (j = 0; separator[j]; j++)
+			{
+				printf("%c", separator[j]);
+			}
 		}
 	}
 	printf("%d\n", va_arg(nums, int));
