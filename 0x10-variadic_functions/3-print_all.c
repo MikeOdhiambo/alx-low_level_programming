@@ -1,0 +1,47 @@
+#include "variadic_functions.h"
+
+/**
+ * print_all - Prints anything given a list of args
+ * format: List of arg types
+ */
+void print_all(const char * const format, ...)
+{
+	int i;
+	char *str;
+	char *sep = "";
+	va_list ap;
+
+	i = 0;
+	va_start(ap, format);
+	if (format)
+		while (format[i])
+		{
+			switch (format[i])
+			{
+				case 'c':
+					printf("%s%c", sep, va_arg(ap, int));
+					break;
+				case 'i':
+					printf("%s%d", sep, va_arg(ap, int));
+					break;
+				case 'f':
+					printf("%s%f", sep, va_arg(ap, double));
+					break;
+				case 's':
+					str = va_arg(ap, char *);
+					if (!str)
+					{
+						str = "(nil)";
+					}
+					printf("%s%s", sep, str);
+					break;
+				default:
+					i++;
+					continue;
+			}
+			sep = ", ";
+			i++;
+		}
+	print("\n");
+	va_end(ap);
+}
