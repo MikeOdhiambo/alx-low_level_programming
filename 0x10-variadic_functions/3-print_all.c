@@ -42,6 +42,6 @@ void print_all(const char * const format, ...)
 			sep = ", ";
 			i++;
 		}
-	print("\n");
+	printf("\n");
 	va_end(ap);
 }
