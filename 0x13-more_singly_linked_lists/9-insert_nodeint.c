@@ -6,11 +6,11 @@
  * @idx: Index of insertion
  * @n: Data value of node
  *
- * Return: Ppointer to new node, NULL (Fail)
+ * Return: Pointer to new node, NULL (Fail)
  */
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	listint *node, *ptr;
+	listint_t *node, *ptr;
 	unsigned int i;
 
 	node = malloc(sizeof(listint_t));
@@ -20,7 +20,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	}
 	node->n = n;
 	node->next = NULL;
-	if (!(*head) || !idx)
+	if (!(*head))
 	{
 		return (NULL);
 	}
