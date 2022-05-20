@@ -24,17 +24,17 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 	fd = open(filename, O_RDONLY);
-	if (fd == -1)
+	if (fd < 0)
 	{
 		return (0);
 	}
 	lineRead = read(fd, buff, letters);
-	if (lineRead == -1)
+	if (lineRead < 0)
 	{
 		return (0);
 	}
 	lineWrite = write(STDOUT_FILENO, buff, lineRead);
-	if (lineWrite == -1)
+	if (lineWrite < 0)
 	{
 		return (0);
 	}
