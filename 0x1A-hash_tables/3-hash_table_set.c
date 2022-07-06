@@ -1,84 +1,107 @@
 #include "hash_tables.h"
 
 /**
- * create_node - Creates a node
- * @key: item key to be hashed
- * @value: value associated with key
- * Return: Pointer to item, NULL (FAIL)
- */
+* check_ht - check if key in hash table
+* @ht: double pointer to hash table
+* @key: key to look in hash table
+*
+* Return: 1 if found, 0 if not
+*/
 
-hash_node_t *create_node(const char *key, const char *value)
+int check_ht(hash_node_t **ht, const char *key)
 {
-	hash_node_t *item = (hash_node_t *)malloc(sizeof(hash_node_t));
+	hash_node_t *temp = *ht;
 
-	if (!item)
+	while (temp)
 	{
-		return (NULL);
+		if (!strcmp(temp->key, key))
+			return (1);
+		temp = temp->next;
 	}
-	item->key = (char *)malloc(sizeof(key) + 1);
-	item->value = (char *)malloc(sizeof(value) + 1);
-	item->next = NULL;
-	strcpy(item->key, key);
-	strcpy(item->value, value);
-
-	return (item);
+	return (0);
 }
 
 /**
- * handle_collision - Handles collisions in similar indices
- * @curr: pointer to current item on table
- * @item: item to insert in table
- * Return: 1 (SUCCESS), 0 (FAIL)
- */
+* switch_val - if key is pre-existing, switch it with new value
+* @ht: double pointer to entire hash table
+* @key: key to add
+* @value: value to override at key
+*
+* Return: void
+*/
 
-int handle_collision(hash_node_t *curr, hash_node_t *item)
+void switch_val(hash_node_t **ht, const char *key, const char *value)
 {
-	hash_node_t *temp = curr;
+	hash_node_t *temp = *ht;
 
-	item->next = temp;
-	temp->next = NULL;
-	curr = item;
-
-	return (1);
+	while (temp && strcmp(temp->key, key))
+		temp = temp->next;
+	free(temp->value);
+	temp->value = strdup(value);
 }
 
+
 /**
- * hash_table_set - insert item into hash table
- * @ht: Pointer to table
- * @key: Item key
- * @value: Item value
- * Return: 1 (SUCCESS), 0 (FAIL)
+ * add_node - add new node at the beginning of the hash table list
+ * @head: double pointer to entire hash table
+ * @key: key to add
+ * @value: value to add
+ *
+ * Return: the address of the new element, NULL if failure
  */
+hash_node_t *add_node(hash_node_t **head, const char *key, const char *value)
+{
+	hash_node_t *new;
+
+	new = malloc(sizeof(hash_node_t));
+	if (!new)
+		return (NULL);
+
+	new->key = strdup(key);
+	new->value = strdup(value);
+
+	if (*head == NULL)
+	{
+		(*head) = new;
+		new->next = NULL;
+	} else
+	{
+		new->next = (*head);
+		(*head) = new;
+	}
+
+	return (*head);
+}
+
+
+/**
+* hash_table_set - add element to hash table
+* @ht: hash table to add element to
+* @key: key of the new element, override current key if exists
+* @value: value to store at key
+*
+* Return: 1 on success, 0 on failure
+*/
 
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int index = key_index((unsigned char *)key, ht->size);
-	hash_node_t *item = create_node(key, value);
-	hash_node_t *curr_item = ht->array[index];
+	unsigned long int index;
+	unsigned char *ukey = NULL;
 
-	if (curr_item == NULL)
+	if (!ht || !key || key[0] == '\0' || !ht->array || !ht->size)
+		return (0);
+
+	ukey = (unsigned char *)key;
+
+	index = key_index(ukey, ht->size);
+
+	if (check_ht(&ht->array[index], key))
 	{
-		if (index >= ht->size)
-		{
-			return (0);
-		}
-		else
-		{
-			ht->array[index] = item;
-			return (1);
-		}
+		switch_val(&ht->array[index], key, value);
+		return (1);
 	}
-	else
-	{
-		if (strcmp(curr_item->key, key) == 0)
-		{
-			strcpy(ht->array[index]->value, value);
-			return (1);
-		}
-		else
-		{
-			handle_collision(ht->array[index], item);
-		}
-	}
-	return (0);
+	add_node(&ht->array[index], key, value);
+	if (!&ht->array[index])
+		return (0);
+	return (1);
 }
