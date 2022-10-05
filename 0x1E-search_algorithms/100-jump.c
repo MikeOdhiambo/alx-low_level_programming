@@ -17,6 +17,7 @@ int _round(double x)
 }
 
 /**
+ * jump_search - Searches for value in array using jump search algorithm
  * @array: Array to search the value in
  * @size: Length of the array
  * @value: Number to be searched
@@ -27,6 +28,9 @@ int jump_search(int *array, size_t size, int value)
 	int i = 0, j, sub_size;
 	int m = _round(sqrt((int)size));
 	int prev = (i - 1) * m < 0 ? 0 : (i - 1) * m;
+
+	if (!array)
+		return (-1);
 
 	while ((i * m) <= (int)size)
 	{
@@ -41,10 +45,10 @@ int jump_search(int *array, size_t size, int value)
 			sub_size = (i * m) - ((i - 1) * m);
 			for (j = 0; j < sub_size; j++)
 			{
+				prev += 1;
 				printf("Value checked array[%d] = [%d]\n", prev, array[prev]);
 				if (array[prev] == value)
 					return (prev);
-				prev += 1;
 			}
 		}
 		printf("Value checked array[%d] = [%d]\n", i * m, array[i * m]);
@@ -55,13 +59,13 @@ int jump_search(int *array, size_t size, int value)
 
 /*int main(void)
 {
-    int array[] = {
-        0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-    };
-    size_t size = sizeof(array) / sizeof(array[0]);
+	int array[] = {
+		0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+	};
+	size_t size = sizeof(array) / sizeof(array[0]);
 
-    printf("Found %d at index: %d\n\n", 6, jump_search(array, size, 6));
-    printf("Found %d at index: %d\n\n", 1, jump_search(array, size, 1));
-    printf("Found %d at index: %d\n", 999, jump_search(array, size, 999));
-    return (EXIT_SUCCESS);
+	printf("Found %d at index: %d\n\n", 6, jump_search(array, size, 6));
+	printf("Found %d at index: %d\n\n", 1, jump_search(array, size, 1));
+	printf("Found %d at index: %d\n", 999, jump_search(array, size, 999));
+	return (EXIT_SUCCESS);
 }*/
