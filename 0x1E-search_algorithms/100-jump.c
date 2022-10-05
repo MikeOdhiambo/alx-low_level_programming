@@ -27,29 +27,26 @@ int jump_search(int *array, size_t size, int value)
 {
 	int i = 0, j, sub_size;
 	int m = _round(sqrt((int)size));
-	int prev = (i - 1) * m < 0 ? 0 : (i - 1) * m;
+	int prev;
 
 	if (!array)
 		return (-1);
 
 	while ((i * m) <= (int)size)
 	{
-		if (array[i * m] == value)
-		{
-			printf("Value found between indexes [%d] and [%d]\n", (i * m) - m, (i * m));
-			return (i * m);
-		}
+		prev = (i * m) - m < 0 ? 0 : (i * m) - m;
 		if (array[i * m] >= value)
 		{
 			printf("Value found between indexes [%d] and [%d]\n", prev, (i * m));
-			sub_size = (i * m) - ((i - 1) * m);
-			for (j = 0; j < sub_size; j++)
+			sub_size = (i * m) - prev;
+			for (j = 0; j <= sub_size; j++)
 			{
-				prev += 1;
 				printf("Value checked array[%d] = [%d]\n", prev, array[prev]);
 				if (array[prev] == value)
 					return (prev);
+				prev += 1;
 			}
+			break;
 		}
 		printf("Value checked array[%d] = [%d]\n", i * m, array[i * m]);
 		i += 1;
